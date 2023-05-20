@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>网页示例</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: left;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    button {
+      background-color: #555;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #777;
+    }
+    #centeredText {
+    margin-top: 20px;
+  }
+  #centeredText p {
+    text-align: center;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <button id="homeButton">Home</button>
+    <button id="gatheringHallButton">Gathering Hall</button>
+  </header>
+  <div id="centeredText">
+    <p>Welcome to this website gamers,</p>
+    <p>Start gathering.</p>
+  </div>
+  <div id="content" style="text-align: center;">
+    <button id="btn1">1</button>
+    <button id="btn2">2</button>
+    <button id="btn3">3</button>
+    <button id="btn4">4</button>
+    <button id="btn5">5</button>
+  </div>
+  
+  <!-- 此处为页面主体内容 -->
+  
+  <footer>
+    created by CITS3403group
+  </footer>
+
+  <script>
+    // 获取按钮元素
+  var btn1 = document.getElementById('btn1');
+  var btn2 = document.getElementById('btn2');
+  var btn3 = document.getElementById('btn3');
+  var btn4 = document.getElementById('btn4');
+  var btn5 = document.getElementById('btn5');
+  btn1.style.backgroundImage = "url('/images/classes/death_knight.png')";
+    btn2.style.backgroundImage = "url('path/to/image2.jpg')";
+    btn3.style.backgroundImage = "url('path/to/image3.jpg')";
+    btn4.style.backgroundImage = "url('path/to/image4.jpg')";
+    btn5.style.backgroundImage = "url('path/to/image5.jpg')";
+
+  btn1.addEventListener('click', function() {
+  // 点击按钮1时的操作
+  window.location.href = "chat window.html";
+});
+
+btn2.addEventListener('click', function() {
+  // 点击按钮2时的操作
+  window.location.href = "chat window.html";
+});
+
+btn3.addEventListener('click', function() {
+  // 点击按钮3时的操作
+  window.location.href = "chat window.html";
+});
+
+btn4.addEventListener('click', function() {
+  // 点击按钮4时的操作
+  window.location.href = "chat window.html";
+});
+
+btn5.addEventListener('click', function() {
+  // 点击按钮5时的操作
+  window.location.href = "chat window.html";
+});
+    var homeButton = document.getElementById('homeButton');
+    var gatheringHallButton = document.getElementById('gatheringHallButton');
+
+    // 按钮点击事件处理程序
+    homeButton.addEventListener('click', function() {
+      // 当单击 Home 按钮时执行的操作
+      console.log('Home 按钮被点击');
+    });
+
+    gatheringHallButton.addEventListener('click', function() {
+      // 当单击 Gathering Hall 按钮时执行的操作
+      console.log('Gathering Hall 按钮被点击');
+    });
+     
+  </script>
+</body>
+</html>
