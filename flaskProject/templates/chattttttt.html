@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>gathering hall</title>
+  <style>
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: left;
+    }
+    .chat-container {
+      height: 400px;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .message {
+      margin-bottom: 10px;
+    }
+    .input-container {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<header>
+    <button id="homeButton">Home</button>
+    <button id="gatheringHallButton">Gathering Hall</button>
+  </header>
+<body>
+  <div class="chat-container">
+    <div class="message">test1</div>
+    <div class="message">test2</div>
+  </div>
+
+  <div class="input-container">
+    <input type="text" id="messageInput" placeholder="enter message">
+    <button id="sendButton">send</button>
+  </div>
+
+  <script>
+    var messageInput = document.getElementById('messageInput');
+    var sendButton = document.getElementById('sendButton');
+    var chatContainer = document.querySelector('.chat-container');
+
+    sendButton.addEventListener('click', function() {
+      var message = messageInput.value;
+      if (message) {
+        // 将消息发送到后端数据库的代码
+        var newMessage = document.createElement('div');
+        newMessage.classList.add('message');
+        newMessage.textContent = 'user: ' + message;
+        chatContainer.appendChild(newMessage);
+
+        // 清空输入框
+        messageInput.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
