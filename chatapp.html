@@ -15,7 +15,7 @@
       background-color: #30220d;
       color: #e4a703;
       padding: 10px;
-      text-align: left;
+      text-align: center;
       
     }
     header t1{
@@ -44,6 +44,31 @@
       font-size: 18px;
 
     }
+    .search-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+    
+    .search-input {
+      flex-grow: 1;
+      padding: 8px;
+      font-size: 16px;
+      border: none;
+    }
+    
+    .search-button {
+      background-color: #e4a703;
+      color: #1a0f08;
+      padding: 8px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    
+    
     
     button:hover {
       background-color: #181e22;
@@ -102,18 +127,21 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
+    
   </style>
 </head>
 <body>
   <header>
     <button id="homeButton">Home</button>
     <button id="gatheringHallButton" class="dropbtn">Gathering Hall</button>
-    <div class="dropdown-content">
-      <a>dota2</a>
-      <a>lol</a>
-      <a>pubg</a>
+    <button id="chatHistory">Chat history</button>
+    <button id="login">Login</button>
+    <button id="register">Register</button>
+    <div class="search-box">
+      <input type="text" class="search-input" placeholder="input">
+      <button class="search-button">search</button>
     </div>
-    <t1> welcome user </t1>
+    
     
   </header>
   <div id="centeredText">
@@ -169,11 +197,14 @@ btn5.addEventListener('click', function() {
 });
     var homeButton = document.getElementById('homeButton');
     var gatheringHallButton = document.getElementById('gatheringHallButton');
+    var chatHistoryButton = document.getElementById('chatHistory');
+    var loginButton = document.getElementById('login');
+    var registerButton = document.getElementById('register');
 
     
     homeButton.addEventListener('click', function() {
       
-      console.log('Home 按钮被点击');
+      window.location.href = "chatapp.html";
     });
 
     gatheringHallButton.addEventListener('click', function() {
@@ -181,6 +212,18 @@ btn5.addEventListener('click', function() {
       window.location.href = "window.html";
     });
      
+    chatHistoryButton.addEventListener('click', function() {
+      
+      window.location.href = "window.html";//TODO: put href of history web here; 
+    });
+    loginButton.addEventListener('click', function() {
+      
+      window.location.href = "window.html";//TODO: put href of login web here;
+    });
+    registerButton.addEventListener('click', function() {
+      
+      window.location.href = "window.html";//TODO: put href of register web here;
+    });
   </script>
 </body>
 </html>
