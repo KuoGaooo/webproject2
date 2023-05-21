@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>blank(website name)</title>
+  <link rel="icon" type="image/x-icon" href="flavicon.ico">
+  <style>
+
+
+    h1 {
+        
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .banner {
+      background-color: #e6f0d3f1;
+      padding: 20px;
+      color: black;
+      text-align: center;
+      height: 150px;
+    }
+    p {
+      text-align: left;
+    }
+    .navbar {
+      background-color: #1b8d5a;
+      overflow: hidden;
+    }
+    .navbar a {
+      float: left;
+      color: #e4dfdf;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+  </style>
+
+</head>
+<body>
+  
+    <div class="banner">
+        <h1>Blank(website name)</h1>
+        <p style="text-align: center;">room for a slogan if we need it</p>
+
+
+        <img src="symbol.png" style="position:relative; left: -600px; top: -140px;" > 
+
+
+  <!--sign up container-->
+        <div class="container" style="position:relative; left: 600px; top: -300px;">
+          <h4>Sign In</h4>
+          <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required><br>
+            <input type="password" id="password" placeholder="Password" required><br>
+            <input type="submit" value="Log In">
+          </form>
+        </div>
+        
+
+    </div>
+
+    <div class="navbar">
+      <a href="home.html" class="active">Home</a>
+      <a href="">Game Rooms</a>
+      <a href="#">History Search</a>
+    </div>
+
+    <pre>
+      context of website
+    </pre>
+    <footer>
+      <div class="banner">
+        <h2 style="text-align: right; position: relative; left: -310px;">Socials</h2>
+        <pre style="text-align: right; position:relative; left: -300px; font-size:x-large;">
+          <a href="https://www.facebook.com/" >facebook</a> 
+          <a href="https://www.instagram.com/">instagram</a> 
+          <a href="https://www.github.com/">github</a> 
+        </pre>  
+    </div>
+    </footer>
+  
+  <script>
+
+
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    
+    // Perform validation or authentication he  re
+    // You can use AJAX to send the data to a server-side script for verification
+    
+    if (username == "admin" && password == "password") {
+      
+      // Redirect to another page or perform other actions
+    } 
+    else {
+      alert("invalid username and password");
+    }
+  });
+  </script>
+</body>
+</html>
