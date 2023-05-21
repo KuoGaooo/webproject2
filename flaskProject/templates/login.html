@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card bg-body-tertiary">
+                <div class="card-body row">
+                    <div class="col-lg-6 d-flex align-items-center flex-column">
+                        <img style="width: 100px; height: 100px; object-fit: cover; border-radius: 50px;" alt="robot.png" src="{{ url_for('static', filename='images/robot.png') }}" class="img-fluid">
+                        <div class="text-center fs-1">Chaty</div>
+                        <p>A simple chat application.</p>
+                        <p>Now, you can chat with <span class="fw-bold">ChatGPT</span>.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5 class="card-title text-center mb-4">Login</h5>
+                        <form action="#" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Email</label>
+                            <input type="text" class="form-control" name="email" id="email" required>
+                        </div>
+                        <br>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" required>
+                        </div>
+                        <br>
+                        <div class="mb-3">
+                            <input type="submit" class="btn btn-primary" value="Log In">
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

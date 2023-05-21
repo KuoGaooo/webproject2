@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Register{% endblock %}</h1>
+
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card">
+                <div class="card-body row">
+                    <div class="col-lg-6 d-flex align-items-center flex-column">
+                        <img style="width: 100px; height: 100px; object-fit: cover; border-radius: 50px;"
+                            alt="robot.png" src="{{ url_for('static', filename='images/robot.png') }}" class="img-fluid">
+                        <div class="text-center fs-1">Chaty</div>
+                        <p>A simple chat application.</p>
+                        <p>Now, you can chat with <span class="fw-bold">ChatGPT</span>.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h5 class="card-title text-center mb-4">Register</h5>
+                        <form method="post" action="#">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" class="form-control" name="email" id="InputEmail" required>
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Verify Code</label>
+                                <input type="text" class="form-control" name="captcha" id="captcha" required>
+                                <button id="captcha-btn">Get Code</button>
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username" id="username" required>
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" id="password" required>
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" name="password_confirm" id="password_confirm" required>
+                            </div>
+                            <br>
+                            <div class="mb-3">
+                                <input type="submit" class="btn btn-primary" value="Register Now!">
+                                <p class="pull-right">Already have an account? <a
+                                        href="{{ url_for('auth.login') }}">Login</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,3 +1,7 @@
+# set key for login
+SECRET_KEY = "zheshibenxiangmudemiyao"
+
+
 # set database
 HOSTNAME = "127.0.0.1"
 PORT = 3306

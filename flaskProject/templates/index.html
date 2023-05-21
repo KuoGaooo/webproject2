@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block style %}
+<link rel="stylesheet" href={{ url_for('static', filename='css/index.css' ) }}>
+{% endblock %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-info navbar-light stiky-top">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#chat-list-offcanvas"
+            aria-controls="chat-list-offcanvas" aria-expanded="false" aria-label="Toggle chat list offcanvas">
+            <i class="bi bi-chat"></i>
+        </button>
+        <a class="navbar-brand" href="#">Chaty</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-view-stacked"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- <form class="d-flex me-3">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+            <ul class="navbar-nav">
+                <!-- <li class="nav-item">
+                    <div class="dropdown me-1">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ UserModel.username }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href={{url_for('auth.logout')}}>Logout</a></li>
+                        </ul>
+                </li> -->
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="offcanvas" href="#chat-list-offcanvas" role="button"
+                        aria-controls="chat-list-offcanvas">
+                        Chat History
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        {{ current_user.username }}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href={{url_for('auth.logout')}}>Logout</a></li>
+                    </ul>
+                </li>
+        </div>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+<!-- chat history offcanvas -->
+<div class="offcanvas offcanvas-start" id="chat-list-offcanvas">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Chat History</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <!-- search chat history -->
+        <div class="mb-3">
+            <div class="d-flex me-3">
+                <input id="search-input" class="form-control me-2" type="search" placeholder="Search"
+                    aria-label="Search">
+                <button class="btn btn-outline-success" id="search-btn">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+        <!-- new chat -->
+        <div class="d-grid mx-auto mb-2">
+            <button type="button" class="new-chat btn btn-primary">
+                <i class="bi bi-plus"></i>New Chat
+            </button>
+        </div>
+        <div class="d-flex flex-column">
+            <div id="chat-list-error" class="d-none"></div>
+            <button class="btn btn-danger d-none" id="chat-list-reload">Reload</button>
+        </div>
+        <!-- chat list -->
+        <ul class="list-group chat-list">
+        </ul>
+        <!-- load more -->
+        <div class="d-grid mx-auto">
+            <button class="btn btn-primary" id="load-more">
+                <i class="bi bi-three-dots-vertical"></i> Load More
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- chat messages -->
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="chat-title" class="text-center fw-bold"></div>
+            <div class="panel panel-default">
+                <div class="mt-3 text-center">
+                    <span id="message"></span>
+                </div>
+                <div class="panel-body">
+                    <div class="message-list">
+                        <div class="empty-list-message d-none d-flex flex-column align-items-center">
+                            <p class="fw-bold fs-1">Chat messages will appear here.</p>
+                            <div class="d-flex align-items-center">
+                                <span class="me-1">You can check</span>
+                                <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#chat-list-offcanvas"
+                                    role="button" aria-controls="chat-list-offcanvas">
+                                    Chat History
+                                </a>
+                                <span class="ms-1 me-1">or</span>
+                                <button type="button" class="btn btn-primary">
+                                    <i class="bi bi-send"></i> Send
+                                </button>
+                                <span class="ms-1">message to Chaty.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="text" class="input form-control me-2">
+                <button type="button" class="btn btn-primary rounded-5" id="send">
+                    <i class="bi bi-send"></i> Send
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- top right -->
+<div class="toast-container position-absolute top-0 end-0">
+    <div id="error-toast" class="toast align-items-center text-white bg-danger border-0 " role="alert"
+        aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                ERROR
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

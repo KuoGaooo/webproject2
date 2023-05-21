@@ -1,24 +1,68 @@
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, redirect, url_for, session
 from exts import mail, db
 from flask_mail import Message
 from flask import request
 import string
 import random
-from models import EmailCaptchaModel
+from models import EmailCaptchaModel, UserModel
+from . import forms
+from .forms import RegisterForm, LoginForm
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 # user management
 bp = Blueprint("auth", __name__, url_prefix="/auth")
 
 
-@bp.route("/login")
+@bp.route("/login", methods=['GET', 'POST'])
 def login():
-    pass
+    if request.method == 'GET':
+        return render_template("login.html")
+    else:
+        form = LoginForm(request.form)
+        if form.validate():
+            email = form.email.data
+            password = form.password.data
+            user = UserModel.query.filter_by(email=email).first()
+            if not user:
+                print("email not exist as a user!")
+                return redirect(url_for("auth.login"))
+            if check_password_hash(user.password, password):
+                session['user_id'] = user.id
+                return redirect("/")
+            else:
+                print("password error")
+                return redirect(url_for("auth.login"))
+        else:
+            print(form.errors)
+            return redirect(url_for(("auth.login")))
 
 
-@bp.route("/register")
+@bp.route("/register", methods=['GET', 'POST'])
 def register():
-    return render_template("register-test.html")
+    if request.method == 'GET':
+        return render_template("register.html")
+    else:
+        form = RegisterForm(request.form)
+        if form.validate():
+            email = form.email.data
+            username = form.username.data
+            password = form.password.data
+            user = UserModel(email=email, username=username, password=generate_password_hash(password))
+            db.session.add(user)
+            db.session.commit()
+            return redirect(url_for("auth.login"))
+        else:
+            print(form.email.data, form.username.data)
+            return redirect(url_for("auth.register"))
+
+
+@bp.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/")
+
+
 
 
 @bp.route("/captcha/email")
@@ -37,8 +81,3 @@ def get_email_captcha():
 
 
 
-@bp.route("/mail/test")
-def mail_test():
-    message = Message(subject="你好", recipients=["23318508@student.uwa.edu.au"], body="我是你大爷")
-    mail.send(message)
-    return "success"

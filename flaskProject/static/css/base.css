@@ -1,0 +1,9 @@
+body {
+  background-color: #0dcaf0;
+}
+.flash {
+  padding: .1em;
+  background: #cae6f6;
+  /* border: 1px solid #377ba8; */
+  color: red;
+}

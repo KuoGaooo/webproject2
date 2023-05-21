@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- title -->
+    <title>{% block title %} {% endblock %} - Chaty</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href={{url_for('static',filename="bootstrap-icons/font/bootstrap-icons.css")}}>
+    <link rel="stylesheet" href={{url_for('static',filename='bootstrap/css/bootstrap.min.css' )}} />
+    <!-- style -->
+    <link rel="stylesheet" href={{url_for('static',filename='css/base.css' )}} />
+    <script src="{{ url_for('static', filename='jquery/jquery-3.6.4.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
+    {% block style %} {% endblock %}
+</head>
+
+<body>
+    <!-- content -->
+    {% block content %} {% endblock %}
+    <script src={{url_for('static',filename="jquery/jquery-3.6.4.min.js")}}></script>
+    <script src={{url_for('static',filename='bootstrap/js/bootstrap.bundle.min.js' )}}></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- script -->
+    {% block script %} {% endblock %}
+</body>
+
+</html>
