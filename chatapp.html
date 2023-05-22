@@ -2,7 +2,13 @@
 <html>
 <head>
   <title>chatapp homepage</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/detail.css') }}">
   <style>
+    
     body {
       margin: 0;
       padding: 0;
@@ -127,6 +133,8 @@
     .dropdown:hover .dropdown-content {
       display: block;
     }
+
+
     
   </style>
 </head>
@@ -144,17 +152,38 @@
     
     
   </header>
-  <div id="centeredText">
-    <h1>Welcome to this website gamers,</h1>
-    <h2>Start gathering.</h2>
-  </div>
-  <div id="content" style="text-align: center;">
-    <button id="btn1"><img src="dota2.png" alt="dota2"></button>
-    <button id="btn2"><img src="lol.png" alt="lol"></button>
-    <button id="btn3"><img src="csgo.png" alt="csgo"></button>
-    <button id="btn4"><img src="pubg.png" alt="pubg"></button>
-    <button id="btn5"><img src="valorant.png" alt="valorant"></button>
-  </div>
+  <h3 class="page-title">{{ question.title }}</h3>
+    <p class="question-info">
+        <span>作者：{{ question.author.username }}</span>
+        <span>时间：{{ question.create_time }}</span>
+    </p>
+    <hr>
+    <p class="question-content">{{ question.content }}</p>
+    <hr>
+    <h4 class="comment-group-title">评论（{{ question.answers|length }}）：</h4>
+    <form action="{{ url_for('qa.public_answer') }}" method="post">
+        <input type="hidden" name="question_id" value="{{ question.id }}">
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" placeholder="请填写评论" name="content" class="form-control">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">评论</button>
+            </div>
+        </div>
+    </form>
+    <ul class="comment-group">
+        {% for answer in question.answers %}
+            <li>
+                <div class="user-info">
+                    <img class="avatar" src="{{ url_for('static',filename='images/zhiliao.png') }}" alt="">
+                    <span class="username">{{ answer.author.username }}</span>
+                    <span class="create-time">{{ answer.create_time }}</span>
+                </div>
+                <p class="comment-content">{{ answer.content }}</p>
+            </li>
+        {% endfor %}
+    </ul>
   
   
   
@@ -163,66 +192,40 @@
   </footer>
 
   <script>
-    
-  var btn1 = document.getElementById('btn1');
-  var btn2 = document.getElementById('btn2');
-  var btn3 = document.getElementById('btn3');
-  var btn4 = document.getElementById('btn4');
-  var btn5 = document.getElementById('btn5');
   
-
-  btn1.addEventListener('click', function() {
-  
-  window.location.href = "window.html";
-});
-
-btn2.addEventListener('click', function() {
-  
-  window.location.href = "window.html";
-});
-
-btn3.addEventListener('click', function() {
-  
-  window.location.href = "window.html";
-});
-
-btn4.addEventListener('click', function() {
-  
-  window.location.href = "window.html";
-});
-
-btn5.addEventListener('click', function() {
-  
-  window.location.href = "window.html";
-});
     var homeButton = document.getElementById('homeButton');
     var gatheringHallButton = document.getElementById('gatheringHallButton');
     var chatHistoryButton = document.getElementById('chatHistory');
     var loginButton = document.getElementById('login');
     var registerButton = document.getElementById('register');
+    var logoutButton = document.getElementById('logout');
 
-    
-    homeButton.addEventListener('click', function() {
-      
-      window.location.href = "chatapp.html";
+
+    homeButton.addEventListener('click', function () {
+
+        window.location.href = "{{ url_for('qa.index') }}";
     });
 
-    gatheringHallButton.addEventListener('click', function() {
-      
-      window.location.href = "window.html";
+
+    gatheringHallButton.addEventListener('click', function () {
+
+        window.location.href = "{{ url_for('qa.public_question') }}";
     });
-     
-    chatHistoryButton.addEventListener('click', function() {
-      
-      window.location.href = "window.html";//TODO: put href of history web here; 
+
+    chatHistoryButton.addEventListener('click', function () {
+
+        window.location.href = "{{ url_for('qa.history') }}";//TODO: put href of history web here;
     });
-    loginButton.addEventListener('click', function() {
-      
-      window.location.href = "window.html";//TODO: put href of login web here;
+    loginButton.addEventListener('click', function () {
+
+        window.location.href = "{{ url_for('auth.login') }}";//TODO: put href of login web here;
     });
-    registerButton.addEventListener('click', function() {
-      
-      window.location.href = "window.html";//TODO: put href of register web here;
+    registerButton.addEventListener('click', function () {
+
+        window.location.href = "{{ url_for('auth.register') }}";//TODO: put href of register web here;
+    });
+    logoutButton.addEventListener('click', function () {
+        window.location.href = "{{ url_for('auth.logout') }}";//TODO: put href of register web here;
     });
   </script>
 </body>
